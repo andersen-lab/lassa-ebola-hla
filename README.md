@@ -15,5 +15,6 @@ A comprehensive list of the 138 HLA alleles sequenced and their frequencies in t
 Thus far, the results of this project have contributed in the efforts to characterize the under-represented West African population in the IMGT/HLA database, and most importantly, these results may shed light in understanding the contribution of specific HLA genotypes in association with outcomes of hemorrhagic fever infection in the West African population. 
 
 ### Allele Frequencies in EVD vs LASV patients.
+\*Novel Alleles highlighted in <span style="color: red;">RED</span>.
 
 ![Allele Frequency](https://raw.githubusercontent.com/andersen-lab/lassa-ebola-hla/master/img/allele_frequency.png)
