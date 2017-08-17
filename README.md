@@ -15,8 +15,8 @@ Thus far, the results of this project have contributed in the efforts to charact
 ### Allelic Frequencies(>5%).
 
 | MHC-I |          |                   | MHC-II   |             |                   |
-| Gene  | Allele   | Allelic Frequency | Gene     | Allele      | Allelic Frequency |
 | ---   | ---      |               --- | ---      | ---         |               --- |
+| Gene  | Allele   | Allelic Frequency | Gene     | Allele      | Allelic Frequency |
 | HLA-A | A*020101 |              0.12 | HLA-DPA1 | DPA1*020101 |              0.31 |
 | HLA-A | A*030101 |              0.12 | HLA-DPA1 | DPA1*020108 |              0.19 |
 | HLA-A | A*300201 |              0.12 | HLA-DPA1 | DPA1*020202 |              0.13 |
