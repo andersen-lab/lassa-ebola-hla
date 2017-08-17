@@ -10,8 +10,7 @@ So far, the data suggest the presence of a high number of novel alleles - that i
 
 A comprehensive list of the HLA alleles sequenced and their frequencies in the Ebola and Lassa groups is presented in ([list_of_alleles.csv](https://github.com/andersen-lab/lassa-ebola-hla/blob/master/list_of_alleles.csv)). 
 
-<<<<<<< HEAD
-A comprehensive list of the 138 HLA alleles sequenced and their frequencies is presented in ([allele_frequencies.csv](list_of_alleles.csv)). 
+A comprehensive list of the 138 HLA alleles sequenced and their frequencies is presented in ([allele_frequencies.csv](https://github.com/andersen-lab/lassa-ebola-hla/blob/master/allele_frequencies.csv))). 
 
 Thus far, the results of this project have contributed in the efforts to characterize the under-represented West African population in the IMGT/HLA database, and most importantly, these results may shed light in understanding the contribution of specific HLA genotypes in association with outcomes of hemorrhagic fever infection in the West African population. 
 
@@ -163,8 +162,6 @@ Thus far, the results of this project have contributed in the efforts to charact
 |HLA-DRB5|DRB5*02@7|0.8|
 |HLA-DRB5|DRB5*010101|0.2|
 
-
-=======
 #### Allele Frequencies in EVD vs LASV patients.
 
 \*Novel Alleles highlighted in <span style="color: red;">RED</span>.
