@@ -66,11 +66,25 @@ plt.close()
 
 # Generate Markdown Table for README.md
 print("Copy markdown table into README.md")
-for c in list_of_alleles["MHC Class"].unique():
-    _ = list_of_alleles[list_of_alleles["MHC Class"] == c]
-    print("\n")
-    print("### "+c)
-    print("| Gene | Allele | Allelic Frequency(> 5%) |")
-    print("| --- | --- | --- |")    
-    for i in _.index:
-        print("|"+_["Gene"][i]+"|"+str(i)+"|"+ str(_["Allelic_Frequency"][i])+"|")
+c = list_of_alleles[list_of_alleles["Allelic_Frequency"]>0.05].sort_values(["Gene", "Allelic_Frequency"],ascending=[True, False])
+c1 = "MHC-I"
+c2 = "MHC-II"
+print("\n")
+print("| "+c1+"| | | |"+c2+"| | |")
+print("| --- | --- | --- | --- | --- | --- | --- |")
+print("| Gene | Allele | Allelic Frequency(> 5%) | | Gene | Allele | Allelic Frequency(> 5%) |")
+print("| --- | --- | --- | --- | --- | --- | --- |")
+c1 = c[c["MHC Class"] == c1]
+c2 = c[c["MHC Class"] == c2]
+for i in range(0, max(len(c1), len(c2))):
+    l = ""
+    if i < len(c1):
+        _ = c1.index[i]
+        l+="| "+c1["Gene"][_]+" | "+str(_)+" | "+ str(round(c1["Allelic_Frequency"][_]*100)/100)+" | "
+    else:
+        l+="| | | | "
+    if i <len(c2):
+        _ = c2.index[i]
+        l+="| "+c2["Gene"][_]+" | "+str(_)+" | "+ str(round(c2["Allelic_Frequency"][_]*100)/100)+" | "
+    print(l)
+        
