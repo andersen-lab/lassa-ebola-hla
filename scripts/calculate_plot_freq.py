@@ -3,10 +3,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Circle
 import matplotlib.patches as patches
-import scipy
-import statsmodels.stats.multitest as smm
 
 plt.style.use("seaborn")
+
+MHC_Class_I = ["HLA-A", "HLA-B", "HLA-C"]
 
 # Calculate allele counts
 df = pd.read_csv("../Genotype_calls.csv", na_values="-")
@@ -14,60 +14,63 @@ df = df.set_index("individual")
 df = df.apply(lambda x:x.str.rstrip()) # Remove trailing whitespaces
 
 # EVD
-list_of_alleles_EVD = pd.DataFrame(columns=["Count_EVD", "Allele_Frequency_EVD", "HLA"])
-a = df[df["Status "]=="EVD"][df.columns.values[3:]].stack().value_counts()
-list_of_alleles_EVD["Count_EVD"] = a.values
-list_of_alleles_EVD["HLA"] = a.index.values
+list_of_alleles = pd.DataFrame(columns=["MHC Class", "No. of Obs Alleles", "No. of Total Alleles", "No. of Individuals", "Allele_Count", "Allelic_Frequency", "Allele"])
+# a = df[df["Status "]=="EVD"][df.columns.values[3:]].stack().value_counts(
+a = df[df.columns.values[3:]].stack().value_counts()
+list_of_alleles["Allele_Count"] = a.values
+list_of_alleles["Allele"] = a.index.values
 freq = []
-ebola_df = df[df["Status "] == "EVD"]
-for i in list_of_alleles_EVD.index:
-    hla = list_of_alleles_EVD.ix[i]["HLA"].split("*")[0]
-    _sum = ebola_df[ebola_df.columns[(ebola_df.columns.values == hla) | (ebola_df.columns.values == hla+".1")]].stack().dropna().value_counts().sum()
-    freq.append(list_of_alleles_EVD.ix[i]["Count_EVD"]/_sum)
-list_of_alleles_EVD["Allele_Frequency_EVD"] = freq
-list_of_alleles_EVD = list_of_alleles_EVD.set_index("HLA")
-[]
-# LASV
-list_of_alleles_LASV = pd.DataFrame(columns=["Count_LASV", "Allele_Frequency_LASV", "HLA"])
-a = df[df["Status "]=="LASV"][df.columns.values[3:]].stack().value_counts()
-list_of_alleles_LASV["Count_LASV"] = a.values
-list_of_alleles_LASV["HLA"] = a.index.values
-freq = []
-ebola_df = df[df["Status "] == "LASV"]
-for i in list_of_alleles_LASV.index:
-    hla = list_of_alleles_LASV.ix[i]["HLA"].split("*")[0]
-    _sum = ebola_df[ebola_df.columns[(ebola_df.columns.values == hla) | (ebola_df.columns.values == hla+".1")]].stack().dropna().value_counts().sum()
-    freq.append(list_of_alleles_LASV.ix[i]["Count_LASV"]/_sum)
-list_of_alleles_LASV["Allele_Frequency_LASV"] = freq
-list_of_alleles_LASV = list_of_alleles_LASV.set_index("HLA")
+individuals = []
+for i in list_of_alleles.index:
+    hla = list_of_alleles.ix[i]["Allele"].split("*")[0]
+    _sum = df[df.columns[(df.columns.values == hla) | (df.columns.values == hla+".1")]].stack().dropna().value_counts().sum()
+    freq.append(list_of_alleles.ix[i]["Allele_Count"]/_sum)
+    if hla+".1" in df.columns.tolist():
+        _ind = df[(~df[hla].isnull()) | (~df[hla+".1"].isnull())].shape[0]
+    else:
+        _ind = df[(~df[hla].isnull())].shape[0]
+    individuals.append(_ind)
+list_of_alleles["Allelic_Frequency"] = freq
+list_of_alleles = list_of_alleles.set_index("Allele")
+list_of_alleles["Gene"] = ["HLA-"+i[0] for i in list_of_alleles.index.str.split("*")]
+list_of_alleles["No. of Individuals"] = individuals
+list_of_alleles["No. of Obs Alleles"] = list_of_alleles["Gene"].apply(lambda x: list_of_alleles[list_of_alleles["Gene"]==x].shape[0])
+list_of_alleles["No. of Total Alleles"] = list_of_alleles["Gene"].apply(lambda x: list_of_alleles[list_of_alleles["Gene"]==x]["Allele_Count"].sum())
+list_of_alleles["MHC Class"] = list_of_alleles["Gene"].apply(lambda x: "MHC-I" if x in MHC_Class_I else "MHC-II")
+list_of_alleles = list_of_alleles.sort_values(["Gene", "Allele_Count"], ascending=[True, False])
+list_of_alleles.to_csv("../allele_frequencies.csv")
 
-c = pd.concat([list_of_alleles_EVD, list_of_alleles_LASV], axis = 1).fillna(0)
-c["Total_Allele_frequency"] = c["Allele_Frequency_EVD"]+c["Allele_Frequency_LASV"]
-c = c.sort_values("Total_Allele_frequency", ascending=False) # Concatenated dataframe
 
-# Plot 
-fig, ax = plt.subplots(figsize=(20,10))
-c[["Allele_Frequency_EVD", "Allele_Frequency_LASV"]].plot(kind="bar", ax = ax)
-pos = [c.index.get_loc(i) for i in c.index[c.index.str.contains("@")]] # Unique Alleles contain an @ symbol
-for i in pos:
-    ax.get_xticklabels()[i].set_color("red")
-ax.set_title("Allele Frequencies EVD vs LASV Patients")
-ax.set_xlabel("HLA Alleles")
-ax.set_ylabel("Allele Frequencies")
+# Counts plot
+ax = list_of_alleles.groupby(["Gene"]).mean()[["No. of Individuals", "No. of Obs Alleles", "No. of Total Alleles"]].plot(kind="bar")
+ax.set_title("Counts per HLA Gene")
+ax.set_ylabel("Count")
 plt.tight_layout()
-plt.savefig("../img/allele_frequency.png")
+plt.savefig("../img/counts.png")
 plt.clf()
 plt.close()
 
-# Test for statistical significance in difference of counts for EVD vs LASV patients.
-evd_total = c["Count_EVD"].sum()
-lasv_total = c["Count_LASV"].sum()
-pvalues = []
-for i in c.index:
-    _ = [[c.ix[i]["Count_EVD"], c.ix[i]["Count_LASV"]], [evd_total, lasv_total]]
-    oddsratio, pval = scipy.stats.fisher_exact(_)
-    pvalues.append(pval)
-corrected_pval = smm.multipletests(pvalues, method="fdr_bh", alpha=0.05)
-c["pval"] = corrected_pval[1]
-print("Number of HLA types that have significant differences in EVD vs LASV patients: "+str(list(corrected_pval[0]).count(True)))
+# Plot Alleles with Frequency >= 5%
+fig, ax = plt.subplots(figsize=(20,10))
+c = list_of_alleles[list_of_alleles["Allelic_Frequency"]>0.05]["Allelic_Frequency"].sort_values(ascending=False)
+c.plot(kind="bar", ax = ax)
+pos = [c.index.get_loc(i) for i in c.index[c.index.str.contains("@")]]
+for i in pos:
+    ax.get_xticklabels()[i].set_color("red")
+ax.set_title("Frequencies of Alleles(>5%)")
+ax.set_ylabel("Frequency")
+plt.tight_layout()
+plt.savefig("../img/allelic_frequency.png")
+plt.clf()
+plt.close()
 
+# Generate Markdown Table for README.md
+print("Copy markdown table into README.md")
+for c in list_of_alleles["MHC Class"].unique():
+    _ = list_of_alleles[list_of_alleles["MHC Class"] == c]
+    print("\n")
+    print("### "+c)
+    print("| Gene | Allele | Allelic Frequency(> 5%) |")
+    print("| --- | --- | --- |")    
+    for i in _.index:
+        print("|"+_["Gene"][i]+"|"+str(i)+"|"+ str(_["Allelic_Frequency"][i])+"|")
