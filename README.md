@@ -12,7 +12,7 @@ A comprehensive list of the 138 HLA alleles sequenced and their frequencies is p
 
 Thus far, the results of this project have contributed in the efforts to characterize the under-represented West African population in the IMGT/HLA database, and most importantly, these results may shed light in understanding the contribution of specific HLA genotypes in association with outcomes of hemorrhagic fever infection in the West African population. 
 
-### Allelic Frequencies(>5%).
+### Allelic Frequencies(>5%)
 
 | MHC-I |          |                   | MHC-II   |             |                   |
 | ---   | ---      |               --- | ---      | ---         |               --- |
