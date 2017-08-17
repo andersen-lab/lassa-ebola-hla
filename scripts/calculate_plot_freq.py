@@ -70,19 +70,18 @@ c = list_of_alleles[list_of_alleles["Allelic_Frequency"]>0.05].sort_values(["Gen
 c1 = "MHC-I"
 c2 = "MHC-II"
 print("\n")
-print("| "+c1+"| | | |"+c2+"| | |")
-print("| --- | --- | --- | --- | --- | --- | --- |")
-print("| Gene | Allele | Allelic Frequency(> 5%) | | Gene | Allele | Allelic Frequency(> 5%) |")
-print("| --- | --- | --- | --- | --- | --- | --- |")
+print("| "+c1+"| | |"+c2+"| | |")
+print("| Gene | Allele | Allelic Frequency | Gene | Allele | Allelic Frequency |")
+print("| --- | --- | --- | --- | --- | --- |")
 c1 = c[c["MHC Class"] == c1]
 c2 = c[c["MHC Class"] == c2]
 for i in range(0, max(len(c1), len(c2))):
     l = ""
     if i < len(c1):
         _ = c1.index[i]
-        l+="| "+c1["Gene"][_]+" | "+str(_)+" | "+ str(round(c1["Allelic_Frequency"][_]*100)/100)+" | "
+        l+="| "+c1["Gene"][_]+" | "+str(_)+" | "+ str(round(c1["Allelic_Frequency"][_]*100)/100)
     else:
-        l+="| | | | "
+        l+="| | | "
     if i <len(c2):
         _ = c2.index[i]
         l+="| "+c2["Gene"][_]+" | "+str(_)+" | "+ str(round(c2["Allelic_Frequency"][_]*100)/100)+" | "
