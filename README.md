@@ -1,4 +1,4 @@
-*Summary: HLA genotyping of Lassa and Ebola patients. [Data here](https://github.com/andersen-lab/lassa-ebola-hla).*
+*Summary: HLA genotyping of Lassa and Ebola patients from Sierra Leone. [Data here](https://github.com/andersen-lab/lassa-ebola-hla).*
 
 In an effort to increase our understanding of the immune response to Lassa virus (LASV) and Ebola virus (EBOV), we are typing the human leukocyte antigen (HLA) genes from Lassa and Ebola patients, as well as healthy individuals.
 
