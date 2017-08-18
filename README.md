@@ -8,7 +8,7 @@ To date, we have sequenced and genotyped 39 PBMC samples from Lassa and Ebola pa
 
 So far, the data suggest the presence of a high number of novel alleles - that is alleles with no reference in the IMGT/HLA database ([novel_alleles.csv](https://github.com/andersen-lab/lassa-ebola-hla/blob/master/novel_alleles.csv)). Six of these are found in the Class II HLA loci. The DPA1 loci has the highest number with 3 novel alleles. A novel allele of particular interest is the presence of a nonsynonymous mutation in the start codon (ATG to ACG) of the DPA1 loci (DPA1*03:01@2). 
 
-A comprehensive list of the 138 HLA alleles sequenced and their frequencies is presented in ([allele_frequencies.csv](https://github.com/andersen-lab/lassa-ebola-hla/blob/master/allele_frequencies.csv))). 
+A comprehensive list of the 138 HLA alleles sequenced and their frequencies is presented in ([allele_frequencies.csv](https://github.com/andersen-lab/lassa-ebola-hla/blob/master/allele_frequencies.csv)). 
 
 Thus far, the results of this project have contributed in the efforts to characterize the under-represented West African population in the IMGT/HLA database, and most importantly, these results may shed light in understanding the contribution of specific HLA genotypes in association with outcomes of hemorrhagic fever infection in the West African population. 
 
