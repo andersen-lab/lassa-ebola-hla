@@ -1,4 +1,4 @@
-*Summary: HLA genotyping of Lassa and Ebola patients. [Data here](https://github.com/andersen-lab/lassa-ebola-hla).*
+*Summary: HLA genotyping of Lassa and Ebola patients from Sierra Leone. [Data here](https://github.com/andersen-lab/lassa-ebola-hla).*
 
 In an effort to increase our understanding of the immune response to Lassa virus (LASV) and Ebola virus (EBOV), we are typing the human leukocyte antigen (HLA) genes from Lassa and Ebola patients, as well as healthy individuals.
 
@@ -12,7 +12,7 @@ A comprehensive list of the 143 HLA alleles sequenced and their frequencies is p
 
 Thus far, the results of this project have contributed in the efforts to characterize the under-represented West African population in the IMGT/HLA database, and most importantly, these results may shed light in understanding the contribution of specific HLA genotypes in association with outcomes of hemorrhagic fever infection in the West African population.
 
-### Allelic Frequencies(>5%)
+#### Allelic Frequencies(>5%)
 
 | MHC-I |          |                   | MHC-II   |             |                   |
 | ---   | ---      |               --- | ---      | ---         |               --- |
