@@ -1,1 +1,12 @@
-﻿Loci,Observed (Total) Alleles(Ebola),No. Individuals(Ebola),Observed (Total) Alleles(Lassa),No. Individuals(Lassa)HLA-A,15 (44),22,13 (34),17HLA-B,18 (44),22,18 (34),17HLA-C,15 (44),22,16 (34),17HLA- DPA1,8 (44),22,8 (34),17HLA-DPB1,11 (44),22,12 (34),17HLA-DQA1,8 (44),22,8 (34),17HLA-DQB1,13 (44),22,11 (34),17HLA-DRB1,15 (44),22,15 (34),17HLA-DRB3,3 (36),21,3 (23),16HLA-DRB4,2 (6),5,2 (8),7HLA-DRB5,1(2),2,2 (3),3
+Gene,Obs_Alleles_EVD,Total_Alleles_EVD,Individuals_EVD,Obs_Alleles_LASV,Total_Alleles_LASV,Individuals_LASV
+HLA-A,15.0,46.0,23.0,14.0,44.0,22.0
+HLA-B,18.0,46.0,23.0,19.0,44.0,22.0
+HLA-C,15.0,46.0,23.0,18.0,44.0,22.0
+HLA-DPA1,8.0,46.0,23.0,8.0,44.0,22.0
+HLA-DPB1,11.0,46.0,23.0,12.0,44.0,22.0
+HLA-DQA1,8.0,46.0,23.0,9.0,44.0,22.0
+HLA-DQB1,13.0,46.0,23.0,12.0,44.0,22.0
+HLA-DRB1,15.0,46.0,23.0,18.0,44.0,22.0
+HLA-DRB3,3.0,38.0,22.0,3.0,29.0,20.0
+HLA-DRB4,2.0,6.0,5.0,2.0,8.0,7.0
+HLA-DRB5,1.0,2.0,2.0,3.0,5.0,5.0
