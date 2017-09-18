@@ -36,8 +36,9 @@ MHC_Class_I = ["HLA-A", "HLA-B", "HLA-C"]
 
 # Calculate allele counts
 df = pd.read_csv("../Genotype_calls.csv", na_values="-")
-df = df.set_index("individual")
+df = df.set_index("Individual")
 df = df.apply(lambda x:x.str.rstrip()) # Remove trailing whitespaces
+df.columns = df.columns.str.rstrip()
 
 
 list_of_alleles = get_list_of_alleles(df)
@@ -48,12 +49,12 @@ obs_total = list_of_alleles.groupby("Gene").mean()
 obs_total[["No. of Obs Alleles", "No. of Total Alleles", "No. of Individuals"]].to_csv("../Obs_Total_alleles.csv")
 
 # Grouped alleles
-evddf = get_list_of_alleles(df[df["Status "]=="EVD"])
+evddf = get_list_of_alleles(df[df["Status"]=="EBOV"])
 evd_total = evddf.groupby("Gene").mean()
 evd_total = evd_total[["No. of Obs Alleles", "No. of Total Alleles", "No. of Individuals"]]
-evd_total.columns = evd_total.columns.map(lambda x: str(x).replace("No. of ", "").replace(" ", "_")+"_EVD")
+evd_total.columns = evd_total.columns.map(lambda x: str(x).replace("No. of ", "").replace(" ", "_")+"_EBOV")
 
-lasvdf = get_list_of_alleles(df[df["Status "]=="LASV"])
+lasvdf = get_list_of_alleles(df[df["Status"]=="LASV"])
 lasv_total = lasvdf.groupby("Gene").mean()
 lasv_total = lasv_total[["No. of Obs Alleles", "No. of Total Alleles", "No. of Individuals"]]
 lasv_total.columns = lasv_total.columns.map(lambda x: str(x).replace("No. of ", "").replace(" ","_")+"_LASV")
