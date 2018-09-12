@@ -11,8 +11,8 @@ from matplotlib.colors import LinearSegmentedColormap
 plt.style.use("seaborn")
 
 def get_list_of_alleles(df):
-    allelesdf = pd.DataFrame(columns=["MHC Class", "No. of Obs Alleles", "No. of Total Alleles", "No. of Individuals", "Allele_Count", "Allelic_Frequency", "Allele"])    
-    a = df[df.columns.values[3:]].stack().value_counts()
+    allelesdf = pd.DataFrame(columns=["MHC Class", "No. of Obs Alleles", "No. of Total Alleles", "No. of Individuals", "Allele_Count", "Allelic_Frequency", "Allele"])
+    a = df[df.columns.values[4:]].stack().value_counts()
     allelesdf["Allele_Count"] = a.values
     allelesdf["Allele"] = a.index.values
     freq = []
@@ -46,10 +46,7 @@ df["ID"] = df["ID"].str.replace("-", "").str.replace("_", "").astype(str)
 df["Status"] = df["Status"].astype(str).apply(lambda x: x.rstrip())
 # df["Subject"] = df["Subject"].astype(str)
 df = df.set_index("ID")
-df = df.apply(lambda x:x.str.rstrip()) # Remove trailing whitespaces
-
-for i in df.columns:
-    df.loc[df[i].str.contains("NA", na=False), i] = np.nan
+df = df.apply(lambda x:x.str.rstrip().str.lstrip()) # Remove trailing and leading whitespaces
 
 list_of_alleles = get_list_of_alleles(df)
 list_of_alleles.to_csv("../allele_frequencies.csv")
@@ -107,6 +104,7 @@ for i in all:
     rows["ctrlac"].append(ctrl[0])
     rows["ctrlfreq"].append(ctrl[1])
     rows["pval"].append(pvalue)
+
 t = smm.multipletests(rows["pval"], alpha = 0.01, method="fdr_bh")
 evd_ctrl_df["EBOV Allele Count"] = rows["evdac"]
 evd_ctrl_df["EBOV Allele Freq"] = rows["evdfreq"]
@@ -117,6 +115,7 @@ evd_ctrl_df["corrected pval"] = t[1]
 evd_ctrl_df["pass fdr test"] = t[0]
 evd_ctrl_df.to_csv("../EBOV_vs_Control.csv")
 
+# LASV vs Ctrl
 all = lasvdf.index.tolist()
 all.extend(ctrldf.index.tolist())
 all = list(set(all))
@@ -142,6 +141,7 @@ for i in all:
     rows["ctrlac"].append(ctrl[0])
     rows["ctrlfreq"].append(ctrl[1])
     rows["pval"].append(pvalue)
+
 t = smm.multipletests(rows["pval"], alpha = 0.01, method="fdr_bh")
 lasv_ctrl_df["LASV Allele Count"] = rows["lasvac"]
 lasv_ctrl_df["LASV Allele Freq"] = rows["lasvfreq"]
@@ -152,6 +152,63 @@ lasv_ctrl_df["corrected pval"] = t[1]
 lasv_ctrl_df["pass fdr test"] = t[0]
 lasv_ctrl_df.to_csv("../LASV_vs_Control.csv")
 
+# LASV survivor vs non survivor
+
+# Calculate differences between ebola and control
+# Contingency table is
+#        | lasv survivor | dead |
+# allele |               |      |
+# other  |               |      |
+df["State_"] = df["State_"].str.lower()
+df[df["Status"]=="LASV"]["State_"].value_counts()
+lasv_df_surv = get_list_of_alleles(df[(df["Status"]=="LASV") & (df["State_"]=="survivor")])
+lasv_df_nsurv = get_list_of_alleles(df[(df["Status"]=="LASV") & (df["State_"]=="dead")]  )
+# Get interdsection in index
+
+d = {
+    "freq_surv": [],
+    "freq_nsurv": [],
+    "allele": [],
+    "pval": [],
+    "corrected pval": [],
+    "allele_count_surv": [],
+    "allele_count_nsurv": []
+}
+
+indices = lasv_df_surv.index.tolist()
+indices.extend(lasv_df_nsurv.index.tolist())
+indices = list(set(indices))
+for i in indices:
+    allele = [0,0]
+    allele_freq = [0,0]
+    if i in lasv_df_surv.index:
+        allele[0] = lasv_df_surv.ix[i]["Allele_Count"]
+        allele_freq[0] = lasv_df_surv.ix[i]["Allelic_Frequency"]
+    if i in lasv_df_nsurv.index:
+        allele[1] = lasv_df_nsurv.ix[i]["Allele_Count"]
+        allele_freq[1] = lasv_df_nsurv.ix[i]["Allelic_Frequency"]
+    other = [lasv_df_surv.shape[0] * 2 - allele[0], lasv_df_nsurv.shape[0] * 2 - allele[1]]
+    oddsratio, pvalue = fisher_exact([allele, other])
+    d["freq_surv"].append(allele_freq[0])
+    d["freq_nsurv"].append(allele_freq[1])
+    d["allele"].append(i)
+    d["pval"].append(pvalue)
+    d["allele_count_surv"].append(allele[0])
+    d["allele_count_nsurv"].append(allele[1])
+
+t = smm.multipletests(d["pval"], alpha = 0.01, method="fdr_bh")
+d["corrected pval"] = t[1]
+d["pass fdr test"] = t[0]
+d = pd.DataFrame(d)
+d.to_csv("../LASV_SURV_vs_Control.csv")
+
+# Plots
+d[d["pval"]<=0.05][["allele", "allele_count_surv", "allele_count_nsurv"]].plot(x="allele", kind="bar")
+plt.tight_layout()
+plt.savefig("../img/surv_vs_nsurv.png")
+plt.clf()
+
+# Collate EVD and LASV
 collateddf = evd_ctrl_df.drop(["pval", "corrected pval", "pass fdr test"], axis = 1)
 collateddf = collateddf.join(lasv_ctrl_df.drop(["pval", "corrected pval", "pass fdr test", "Control Allele Count", "Control Allele Freq"], axis = 1), rsuffix="LASV", how="outer")
 collateddf.fillna(0).to_csv("../EBOV_LASV_Control.csv")
@@ -165,6 +222,7 @@ for i in collateddf.index:
             dflag = False
     if dflag:
         collateddf = collateddf.drop(i)
+
 collateddf.to_csv("../EBOV_LASV_Control_0.05.csv")
 
 e = collateddf[collateddf["EBOV Allele Freq"] >= 0.05].index.tolist()
@@ -214,6 +272,7 @@ c.plot(kind="bar", ax = ax)
 pos = [c.index.get_loc(i) for i in c.index[c.index.str.contains("@")]]
 for i in pos:
     ax.get_xticklabels()[i].set_color("red")
+
 ax.set_title("Frequencies of Alleles(>5%)")
 ax.set_ylabel("Frequency")
 plt.tight_layout()
