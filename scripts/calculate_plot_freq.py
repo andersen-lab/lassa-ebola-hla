@@ -159,10 +159,10 @@ lasv_ctrl_df.to_csv("../LASV_vs_Control.csv")
 #        | lasv survivor | dead |
 # allele |               |      |
 # other  |               |      |
-df["State_"] = df["State_"].str.lower()
-df[df["Status"]=="LASV"]["State_"].value_counts()
-lasv_df_surv = get_list_of_alleles(df[(df["Status"]=="LASV") & (df["State_"]=="survivor")])
-lasv_df_nsurv = get_list_of_alleles(df[(df["Status"]=="LASV") & (df["State_"]=="dead")]  )
+df["Outcome"] = df["Outcome"].str.lower()
+df[df["Status"]=="LASV"]["Outcome"].value_counts()
+lasv_df_surv = get_list_of_alleles(df[(df["Status"]=="LASV") & (df["Outcome"]=="survivor")])
+lasv_df_nsurv = get_list_of_alleles(df[(df["Status"]=="LASV") & (df["Outcome"]=="dead")]  )
 # Get interdsection in index
 
 d = {
