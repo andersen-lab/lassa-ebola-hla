@@ -12,7 +12,7 @@ plt.style.use("seaborn")
 
 def get_list_of_alleles(df):
     allelesdf = pd.DataFrame(columns=["MHC Class", "No. of Obs Alleles", "No. of Total Alleles", "No. of Individuals", "Allele_Count", "Allelic_Frequency", "Allele"])
-    a = df[df.columns.values[4:]].stack().value_counts()
+    a = df[df.columns.values[5:]].stack().value_counts() # Take only allele columns
     allelesdf["Allele_Count"] = a.values
     allelesdf["Allele"] = a.index.values
     freq = []
