@@ -15,42 +15,42 @@ A comprehensive list of the 259 observed HLA alleles sequenced in the Lassa, Ebo
 | MHC-I |          |                   | MHC-II   |             |                   |
 |:---   |:---      |:---               |:---      |:---         |:---               |
 | Gene  | Allele   | Allelic Frequency | Gene     | Allele      | Allelic Frequency |
-| HLA-A | A*020101 |              0.14 | HLA-DPA1 | DPA1*020101 |              0.24 |
-| HLA-A | A*230101 |              0.11 | HLA-DPA1 | DPA1*020202 |               0.2 |
-| HLA-A | A*300101 |               0.1 | HLA-DPA1 | DPA1*020108 |              0.18 |
-| HLA-A | A*300201 |              0.09 | HLA-DPA1 | DPA1*010301 |              0.09 |
-| HLA-A | A*330301 |              0.08 | HLA-DPA1 | DPA1*0301   |              0.05 |
-| HLA-A | A*030101 |              0.07 | HLA-DPA1 | DPA1*0301@2 |              0.05 |
-| HLA-A | A*330101 |              0.05 | HLA-DPB1 | DPB1*010101 |              0.42 |
-| HLA-A | A*340201 |              0.05 | HLA-DPB1 | DPB1*10501  |              0.06 |
-| HLA-A | A*740101 |              0.05 | HLA-DPB1 | DPB1*130101 |              0.06 |
-| HLA-B | B*350101 |              0.13 | HLA-DPB1 | DPB1*010102 |              0.06 |
-| HLA-B | B*530101 |              0.12 | HLA-DQA1 | DQA1*010201 |              0.19 |
-| HLA-B | B*420101 |              0.07 | HLA-DQA1 | DQA1*050501 |              0.18 |
-| HLA-B | B*440301 |              0.06 | HLA-DQA1 | DQA1*040101 |              0.16 |
-| HLA-B | B*450101 |              0.06 | HLA-DQA1 | DQA1*030301 |              0.14 |
-| HLA-B | B*070201 |              0.06 | HLA-DQA1 | DQA1*020101 |              0.07 |
-| HLA-B | B*580101 |              0.05 | HLA-DQA1 | DQA1*010102 |              0.05 |
-| HLA-C | C*040101 |              0.22 | HLA-DQB1 | DQB1*040201 |              0.16 |
-| HLA-C | C*160101 |              0.19 | HLA-DQB1 | DQB1*050101 |              0.15 |
-| HLA-C | C*170101 |              0.08 | HLA-DQB1 | DQB1*031901 |              0.14 |
-| HLA-C | C*030202 |              0.06 | HLA-DQB1 | DQB1*020201 |              0.14 |
-| HLA-C | C*070201 |              0.05 | HLA-DQB1 | DQB1*030201 |              0.07 |
-| HLA-C | C*021001 |              0.05 | HLA-DQB1 | DQB1*060201 |              0.06 |
-| HLA-C | C*0718   |              0.05 | HLA-DQB1 | DQB1*030101 |              0.06 |
-|       |          |                   | HLA-DQB1 | DQB1*060901 |              0.05 |
-|       |          |                   | HLA-DRB1 | DRB1*030201 |              0.16 |
+| HLA-A | A*020101 |              0.14 | HLA-DPA1 | DPA1*020101 |              0.23 |
+| HLA-A | A*230101 |              0.12 | HLA-DPA1 | DPA1*020202 |               0.2 |
+| HLA-A | A*300101 |              0.09 | HLA-DPA1 | DPA1*020108 |              0.18 |
+| HLA-A | A*330301 |              0.08 | HLA-DPA1 | DPA1*010301 |               0.1 |
+| HLA-A | A*300201 |              0.08 | HLA-DPA1 | DPA1*0301@2 |              0.05 |
+| HLA-A | A*030101 |              0.07 | HLA-DPB1 | DPB1*010101 |              0.43 |
+| HLA-B | B*350101 |              0.13 | HLA-DPB1 | DPB1*130101 |              0.06 |
+| HLA-B | B*530101 |              0.13 | HLA-DPB1 | DPB1*10501  |              0.05 |
+| HLA-B | B*420101 |              0.06 | HLA-DPB1 | DPB1*010102 |              0.05 |
+| HLA-B | B*450101 |              0.06 | HLA-DQA1 | DQA1*010201 |               0.2 |
+| HLA-B | B*440301 |              0.06 | HLA-DQA1 | DQA1*050501 |              0.18 |
+| HLA-B | B*070201 |              0.06 | HLA-DQA1 | DQA1*040101 |              0.15 |
+| HLA-B | B*580101 |              0.05 | HLA-DQA1 | DQA1*030301 |              0.14 |
+| HLA-C | C*040101 |              0.22 | HLA-DQA1 | DQA1*020101 |              0.07 |
+| HLA-C | C*160101 |              0.19 | HLA-DQA1 | DQA1*010102 |              0.06 |
+| HLA-C | C*170101 |              0.08 | HLA-DQA1 | DQA1*050101 |              0.05 |
+| HLA-C | C*030202 |              0.06 | HLA-DQB1 | DQB1*040201 |              0.15 |
+| HLA-C | C*070201 |              0.06 | HLA-DQB1 | DQB1*050101 |              0.15 |
+| HLA-C | C*060201 |              0.05 | HLA-DQB1 | DQB1*031901 |              0.14 |
+|       |          |                   | HLA-DQB1 | DQB1*020201 |              0.14 |
+|       |          |                   | HLA-DQB1 | DQB1*030201 |              0.07 |
+|       |          |                   | HLA-DQB1 | DQB1*060201 |              0.07 |
+|       |          |                   | HLA-DQB1 | DQB1*030101 |              0.05 |
+|       |          |                   | HLA-DRB1 | DRB1*030201 |              0.15 |
 |       |          |                   | HLA-DRB1 | DRB1*130201 |               0.1 |
-|       |          |                   | HLA-DRB1 | DRB1*070101 |              0.07 |
+|       |          |                   | HLA-DRB1 | DRB1*090102 |              0.07 |
+|       |          |                   | HLA-DRB1 | DRB1*070101 |              0.06 |
 |       |          |                   | HLA-DRB1 | DRB1*110102 |              0.06 |
-|       |          |                   | HLA-DRB1 | DRB1*090102 |              0.06 |
 |       |          |                   | HLA-DRB1 | DRB1*110201 |              0.06 |
-|       |          |                   | HLA-DRB1 | DRB1*010201 |              0.05 |
+|       |          |                   | HLA-DRB1 | DRB1*010201 |              0.06 |
+|       |          |                   | HLA-DRB1 | DRB1*040501 |              0.05 |
 |       |          |                   | HLA-DRB3 | DRB3*020201 |              0.27 |
 |       |          |                   | HLA-DRB3 | DRB3*010102 |              0.24 |
 |       |          |                   | HLA-DRB3 | DRB3*030101 |              0.14 |
 |       |          |                   | HLA-DRB4 | DRB4*010301 |              0.11 |
-|       |          |                   | HLA-DRB4 | DRB4*010101 |               0.1 |
+|       |          |                   | HLA-DRB4 | DRB4*010101 |              0.11 |
 
 \*Novel Alleles highlighted in <span style="color: red;">RED</span>.
 
