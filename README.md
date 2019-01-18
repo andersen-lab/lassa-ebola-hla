@@ -1,5 +1,4 @@
-*Summary: HLA genotyping of Lassa and Ebola patients from Sierra Leone. [Data here](https://github.com/andersen-lab/lassa-ebola-hla).*
-
+#### Summary
 In an effort to increase our understanding of the immune response to Lassa virus (LASV) and Ebola virus (EBOV), we are typing the human leukocyte antigen (HLA) genes from Lassa and Ebola patients, as well as healthy individuals.
 
 We perform HLA typing using the Illumina TruSight HLA Sequencing Panel, which allows the isolation and amplification of 11 HLA loci (Class I HLA-A, -B, -C; Class II HLA-DRB1/3/4/5, -DQA1, -DQB1, -DPA1, -DPB1) using long range PCR. Amplicons are used to produce libraries using the Illumina Nextera protocol and sequenced on the Illumina MiSeq platform. HLA-optimized software is used to analyze sequence data, produce consensus sequences and compare them to the IMGT/HLA database for HLA genotype assignments.
