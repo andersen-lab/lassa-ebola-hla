@@ -14,6 +14,7 @@ A comprehensive list of the 259 observed HLA alleles sequenced in the Lassa, Ebo
 | MHC-I |          |                   | MHC-II   |             |                   |
 | :--   | :--      |               :-- | :--      | :--         |               :-- |
 | Gene  | Allele   | Allelic Frequency | Gene     | Allele      | Allelic Frequency |
+| ---   | ---      |               --- | ---      | ---         |               --- |
 | HLA-A | A*020101 |              0.14 | HLA-DPA1 | DPA1*020101 |              0.23 |
 | HLA-A | A*230101 |              0.13 | HLA-DPA1 | DPA1*020202 |               0.2 |
 | HLA-A | A*300101 |              0.09 | HLA-DPA1 | DPA1*020108 |              0.19 |
@@ -23,10 +24,10 @@ A comprehensive list of the 259 observed HLA alleles sequenced in the Lassa, Ebo
 | HLA-B | B*350101 |              0.13 | HLA-DPB1 | DPB1*130101 |              0.05 |
 | HLA-B | B*530101 |              0.12 | HLA-DQA1 | DQA1*010201 |              0.21 |
 | HLA-B | B*420101 |              0.07 | HLA-DQA1 | DQA1*050501 |              0.18 |
-| HLA-B | B*450101 |              0.06 | HLA-DQA1 | DQA1*040101 |              0.16 |
-| HLA-B | B*440301 |              0.06 | HLA-DQA1 | DQA1*030301 |              0.14 |
-| HLA-B | B*580101 |              0.06 | HLA-DQA1 | DQA1*020101 |              0.07 |
-| HLA-B | B*070201 |              0.06 | HLA-DQA1 | DQA1*010102 |              0.05 |
+| HLA-B | B*440301 |              0.06 | HLA-DQA1 | DQA1*040101 |              0.16 |
+| HLA-B | B*450101 |              0.06 | HLA-DQA1 | DQA1*030301 |              0.14 |
+| HLA-B | B*070201 |              0.06 | HLA-DQA1 | DQA1*020101 |              0.07 |
+| HLA-B | B*580101 |              0.06 | HLA-DQA1 | DQA1*010102 |              0.05 |
 | HLA-B | B*150301 |              0.05 | HLA-DQB1 | DQB1*040201 |              0.15 |
 | HLA-C | C*040101 |              0.22 | HLA-DQB1 | DQB1*050101 |              0.15 |
 | HLA-C | C*160101 |              0.18 | HLA-DQB1 | DQB1*031901 |              0.14 |
