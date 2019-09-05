@@ -40,7 +40,7 @@ def get_list_of_alleles(df):
 MHC_Class_I = ["HLA-A", "HLA-B", "HLA-C"]
 
 # Calculate allele counts
-df = pd.read_csv("../Genotype_calls.csv", na_values="-")
+df = pd.read_csv("../Genotype_calls.csv", na_values="-", index_col = 0)
 df.columns = df.columns.str.rstrip()
 df["ID"] = df["ID"].str.replace("-", "").str.replace("_", "").astype(str)
 df["Status"] = df["Status"].astype(str).apply(lambda x: x.rstrip())
