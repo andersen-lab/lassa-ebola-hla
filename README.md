@@ -12,8 +12,8 @@ A comprehensive list of the 288 observed HLA alleles sequenced in the Lassa, Ebo
 #### Allelic Frequencies(>5%)
 
 | MHC-I| | |MHC-II| | |
+| :-- | :-- | :-- | :-- | :-- | :-- |
 | Gene | Allele | Allelic Frequency | Gene | Allele | Allelic Frequency |
-| --- | --- | --- | --- | --- | --- |
 | HLA-A | A*300201 | 0.06| HLA-DPA1 | DPA1*020101 | 0.23 |
 | HLA-A | A*230101 | 0.06| HLA-DPA1 | DPA1*020202 | 0.2 |
 | HLA-B | B*350101 | 0.14| HLA-DPA1 | DPA1*020108 | 0.19 |
