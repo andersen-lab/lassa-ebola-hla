@@ -288,7 +288,7 @@ c2 = "MHC-II"
 print("\n")
 print("| "+c1+"| | |"+c2+"| | |")
 print("| Gene | Allele | Allelic Frequency | Gene | Allele | Allelic Frequency |")
-print("| --- | --- | --- | --- | --- | --- |")
+print("| :-- | :-- | :-- | :-- | :-- | :-- |")
 c1 = c[c["MHC Class"] == c1]
 c2 = c[c["MHC Class"] == c2]
 for i in range(0, max(len(c1), len(c2))):
