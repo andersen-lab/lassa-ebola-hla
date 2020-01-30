@@ -154,7 +154,6 @@ lasv_ctrl_df.to_csv("../LASV_vs_Control.csv")
 
 # LASV survivor vs non survivor
 
-# Calculate differences between ebola and control
 # Contingency table is
 #        | lasv survivor | dead |
 # allele |               |      |
@@ -200,12 +199,67 @@ t = smm.multipletests(d["pval"], alpha = 0.01, method="fdr_bh")
 d["corrected pval"] = t[1]
 d["pass fdr test"] = t[0]
 d = pd.DataFrame(d)
-d.to_csv("../LASV_SURV_vs_Control.csv")
+d.to_csv("../LASV_SURV_vs_NSURV.csv")
 
 # Plots
 d[d["pval"]<=0.05][["allele", "allele_count_surv", "allele_count_nsurv"]].plot(x="allele", kind="bar")
 plt.tight_layout()
-plt.savefig("../img/surv_vs_nsurv.png")
+plt.savefig("../img/lasv_surv_vs_nsurv.png")
+plt.clf()
+
+# Ebola survivor vs non survivor
+
+# Contingency table is
+#        | ebola survivor | dead |
+# allele |               |      |
+# other  |               |      |
+df["Outcome"] = df["Outcome"].str.lower()
+df[df["Status"]=="EBOV"]["Outcome"].value_counts()
+ebov_df_surv = get_list_of_alleles(df[(df["Status"]=="EBOV") & (df["Outcome"]=="survivor")])
+ebov_df_nsurv = get_list_of_alleles(df[(df["Status"]=="EBOV") & (df["Outcome"]=="dead")]  )
+# Get interdsection in index
+
+d = {
+    "freq_surv": [],
+    "freq_nsurv": [],
+    "allele": [],
+    "pval": [],
+    "corrected pval": [],
+    "allele_count_surv": [],
+    "allele_count_nsurv": []
+}
+
+indices = ebov_df_surv.index.tolist()
+indices.extend(ebov_df_nsurv.index.tolist())
+indices = list(set(indices))
+for i in indices:
+    allele = [0,0]
+    allele_freq = [0,0]
+    if i in ebov_df_surv.index:
+        allele[0] = ebov_df_surv.ix[i]["Allele_Count"]
+        allele_freq[0] = ebov_df_surv.ix[i]["Allelic_Frequency"]
+    if i in ebov_df_nsurv.index:
+        allele[1] = ebov_df_nsurv.ix[i]["Allele_Count"]
+        allele_freq[1] = ebov_df_nsurv.ix[i]["Allelic_Frequency"]
+    other = [ebov_df_surv.shape[0] * 2 - allele[0], ebov_df_nsurv.shape[0] * 2 - allele[1]]
+    oddsratio, pvalue = fisher_exact([allele, other])
+    d["freq_surv"].append(allele_freq[0])
+    d["freq_nsurv"].append(allele_freq[1])
+    d["allele"].append(i)
+    d["pval"].append(pvalue)
+    d["allele_count_surv"].append(allele[0])
+    d["allele_count_nsurv"].append(allele[1])
+
+t = smm.multipletests(d["pval"], alpha = 0.01, method="fdr_bh")
+d["corrected pval"] = t[1]
+d["pass fdr test"] = t[0]
+d = pd.DataFrame(d)
+d.to_csv("../EBOV_SURV_vs_NSURV.csv")
+
+# Plots
+d[d["pval"]<=0.05][["allele", "allele_count_surv", "allele_count_nsurv"]].plot(x="allele", kind="bar")
+plt.tight_layout()
+plt.savefig("../img/ebov_surv_vs_nsurv.png")
 plt.clf()
 
 # Collate EVD and LASV
